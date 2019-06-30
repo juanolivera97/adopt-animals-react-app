@@ -4,8 +4,12 @@ import './App.css';
 import Footer from './footer.js'
 import Header from './header';
 import List from './list';
-import Card from './card';
-
+import './Css/animation.css';
+import './Css/fontello-codes.css';
+import './Css/fontello-embedded.css';
+import './Css/fontello-ie7-codes.css';
+import './Css/fontello-ie7.css';
+import './Css/fontello.css';
 
 
 class App extends React.Component {

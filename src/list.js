@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './card';
+import Card from './Card';
 
 
 
@@ -22,7 +22,7 @@ class List extends React.Component {
                             Nobis eaque, magnam repudiandae nam veniam nihil incidunt ad molestiae soluta accusamus.
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                             Nobis eaque, magnam repudiandae nam veniam nihil incidunt ad molestiae soluta accusamus.
-        </p>
+                        </p>
                     </article>
 
                     <aside className="col-md-3">
@@ -78,8 +78,8 @@ class List extends React.Component {
 
 
                 <div className="row">
-                {this.props.animals.map(item => <Card animal={item} />)}
-               
+                    {this.props.animals.map(item => <Card animal={item} />)}
+
                 </div>
             </div>
 
