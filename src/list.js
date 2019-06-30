@@ -1,9 +1,10 @@
 import React from 'react';
 import Card from './Card';
-
+import AppContext from './AppContext';
 
 
 class List extends React.Component {
+    static contextType = AppContext;
     render() {
         return (
             <div className="container">
@@ -78,7 +79,7 @@ class List extends React.Component {
 
 
                 <div className="row">
-                    {this.props.animals.map(item => <Card animal={item} />)}
+                    {this.context.animals.map(item => <Card animal={item} />)}
 
                 </div>
             </div>
