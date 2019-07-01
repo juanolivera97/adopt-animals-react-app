@@ -11,7 +11,7 @@ class Card extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title"> {animal.name} </h5>
                   <p className="card-text">{animal.description}</p>
-                  <a href="animal.html" className="btn btn-primary">Ir a Perfil</a>
+                  <span onClick={() => this.props.selectAnimal(animal.id)} className="btn btn-primary">Ir a Perfil</span>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import Card from './Card';
 import SearchAnimal from './SearchAnimal';
 import AppContext from './AppContext';
 
-class List extends React.Component {
+class AnimalList extends React.Component {
     static contextType = AppContext;
     render() {
         return (
@@ -31,11 +31,16 @@ class List extends React.Component {
 
 
                 <div className="row">
-                    {this.context.animals.map(item => <Card key={item.id} animal={item} />)}
+                    {this.context.animals.map(item => {
+                        return <Card 
+                            selectAnimal={this.context.selectAnimal}
+                            key={item.id} 
+                            animal={item} />;
+                    })}
                 </div>
             </div>
 
         )
     }
 }
-export default List;
+export default AnimalList;

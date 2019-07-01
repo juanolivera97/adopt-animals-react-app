@@ -12,7 +12,10 @@ class NewAnimal extends React.Component {
         barrio: '',
         colordepelo: '',
         colordeojos: '',
-        description: ''
+        description: '',
+        number: '',
+        email: '',
+        ownerName: ''
     }
 
     setName = (e) => {
@@ -51,6 +54,18 @@ class NewAnimal extends React.Component {
         this.setState({ description: e.target.value });
     }
 
+    setNumber = (e) => {
+        this.setState({ number: e.target.value });
+    }
+
+    setEmail = (e) => {
+        this.setState({ email: e.target.value });
+    }
+
+    setOwnerName = (e) => {
+        this.setState({ ownerName: e.target.value });
+    }
+
     submit = () => {
         this.context.addNewAnimal(this.state);
     }
@@ -60,6 +75,16 @@ class NewAnimal extends React.Component {
             <div className="form-group">
                 <label htmlFor="nombre">Nombre:</label>
                 <input value={this.state.name} onChange={this.setName} className="form-control" id="nombre" type="text" placeholder="Nombre:" />
+            </div>
+        )
+    }
+
+    renderOwnerName = () => {
+        return (
+            <div className="form-group">
+                <label htmlFor="nombre">Nombre del dueño:</label>
+                <input value={this.state.ownerName} onChange={this.setOwnerName} 
+                    className="form-control" id="owner-name" type="text" placeholder="Nombre del dueño" />
             </div>
         )
     }
@@ -127,6 +152,22 @@ class NewAnimal extends React.Component {
         )
     }
 
+    renderEyeColor = () => {
+        return (
+            <div className="form-group">
+                <label htmlFor="option">Color de ojos:</label>
+                <select 
+                    value={this.state.colordeojos} onChange={this.setOjos}
+                    className="form-control barrio" name="" id="option">
+                    <option value=""></option>
+                    <option value="Oscuros">Oscuros</option>
+                    <option value="Claros">Claros</option>
+                    <option value="Verdes">Verdes</option>
+                </select>
+            </div>
+        )
+    }
+
     renderRace = () => {
         return (
             <div className="form-group">
@@ -167,31 +208,48 @@ class NewAnimal extends React.Component {
         )
     }
 
+    renderContact = () => {
+        return (
+            <div className="form-group">
+                <label htmlFor="numero">Numero de contacto:</label>
+                <input 
+                    value={this.state.number} onChange={this.setNumber} 
+                    className="form-group" type="tel" name="" id="numero" placeholder="" />
+            </div>
+        )
+    }
+
+    renderEmail = () => {
+        return (
+            <div className="form-group">
+                <label htmlFor="nombre">Email:</label>
+                <input 
+                    value={this.state.email} onChange={this.setEmail} 
+                    className="form-control" id="email" type="email" placeholder="Email:" />
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className="container">
                 <br />
                 <div action="#" className="registro-animal">
                     {this.renderName()}
+                    {this.renderOwnerName()}
                     {this.renderBarrio()}
                     {this.renderAge()}
                     {this.renderType()}
                     {this.renderRace()}
                     {this.renderHairColor()}
+                    {this.renderEyeColor()}
                     {this.renderGender()}
                     {this.renderDescription()}
+                    {this.renderContact()}
+                    {this.renderEmail()}
 
                     <button onClick={this.submit} className="btn btn-info">Enviar</button>
-
-                    {/* <div className="form-group">
-                        <label htmlFor="numero">Numero de contacto:</label>
-                        <input className="form-group" type="tel" name="" id="numero" placeholder="" />
-                    </div> */}
                     {/* <form action="">
-                        <div className="form-group">
-                            <label htmlFor="nombre">Email:</label>
-                            <input className="form-control" id="nombre" type="email" placeholder="Email:" />
-                        </div>
 
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">

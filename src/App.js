@@ -1,23 +1,40 @@
 import React from 'react';
 import './App.css';
-import Footer from './footer.js'
-import Header from './header';
-import List from './list';
 import './Css/animation.css';
 import './Css/fontello-codes.css';
 import './Css/fontello-embedded.css';
 import './Css/fontello-ie7-codes.css';
 import './Css/fontello-ie7.css';
 import './Css/fontello.css';
+
+import Footer from './footer.js'
+import Header from './header';
+import AnimalList from './AnimalList';
 import AppContext from './AppContext';
 import NewAnimal from './NewAnimal';
+import AnimalProfile from './AnimalProfile';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentSection: 'home',
-      animals: []
+      selectedAnimal: {},
+      animals: [{
+        Barrio: "Aguada",
+        Colordeojos: "Oscuros",
+        Colordepelo: "Negro",
+        Edad: "20",
+        Raza: "Boxer",
+        description: "Es un perro",
+        id: 1,
+        name: "Juan",
+        sexo: "M",
+        type: "Perro",
+        number: '097452365',
+        email: 'marquitos@gmail.com',
+        ownerName: 'Marquitos'
+      }]
     };
   }
 
@@ -48,21 +65,29 @@ class App extends React.Component {
         Barrio: newAnimal.barrio,
         Colordepelo: newAnimal.colordepelo,
         Colordeojos: newAnimal.colordeojos,
-        description: newAnimal.description
+        description: newAnimal.description,
+        number: newAnimal.number,
+        email: newAnimal.email,
+        ownerName: newAnimal.ownerName
       }],
       currentSection: 'home'
     });
   }
 
+  selectAnimal = (animalId) => {
+    this.setState({ selectedAnimal: this.state.animals.find(a => a.id === animalId) });
+    this.setState({ currentSection: 'animal-profile' });
+  }
+
   renderCurrentSection() {
     switch (this.state.currentSection) {
+      case 'animal-profile':
+        return <AnimalProfile />;
       case 'new-animal':
-        return (
-          <NewAnimal />
-        );
+        return <NewAnimal />;
       case 'home':
       default:
-        return <List />;
+        return <AnimalList />;
     }
   }
 
@@ -71,12 +96,15 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.animals);
     return (
       <div>
         <AppContext.Provider value={{
           animals: this.state.animals,
           addNewAnimal: this.addNewAnimal,
-          clearAnimalList: this.clearAnimalList
+          clearAnimalList: this.clearAnimalList,
+          selectedAnimal: this.state.selectedAnimal,
+          selectAnimal: this.selectAnimal
         }}>
           <Header navigateTo={this.setCurrentSection}/>
           {this.renderCurrentSection()}
