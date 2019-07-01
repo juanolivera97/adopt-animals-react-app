@@ -1,8 +1,14 @@
 import React from 'react';
 
-
-
 class Header extends React.Component {
+    renderButton = (title, section) => {
+        return (
+            <a onClick={() => this.props.navigateTo(section)}>
+                {title}
+            </a>
+        )
+    }
+
     render() {
         return (
             <div className="logo">
@@ -10,13 +16,10 @@ class Header extends React.Component {
                     <div className="container">
                         <h1 className="icon-guidedog">Terranimal</h1>
                         <input type="checkbox" name="" id="menu-bar" />
-                        <label className="icon-menu" for="menu-bar"></label>
+                        <label className="icon-menu" htmlFor="menu-bar"></label>
                         <nav className="menu">
-                            <a href="#">Home</a>
-                            <a href="newAnimal.html">Registro Animal</a>
-                            <a href="list.html">Lista de animales</a>
-                            <a href="#">Adoptar</a>
-                            <a href="#">Contacto</a>
+                            {this.renderButton('Home', 'home')}
+                            {this.renderButton('Registro Animal', 'new-animal')}
                         </nav>
                     </div>
                 </header>
